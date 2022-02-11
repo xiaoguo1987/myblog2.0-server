@@ -17,18 +17,19 @@ module.exports.createToken = ({
   }, config.tokenSecret, {
     expiresIn: config.expiresIn
   });
+  console.log("houduan token="+token);
   return token;
 };
 
 module.exports.decodeToken = (ctx) => {
   const token = ctx.cookies.get(config.tokenName);
-  // console.log('decodeToken', token);
+   console.log('decodeToken', token);
   const userObj = jwt.decode(token, config.tokenSecret);
   return userObj;
 };
 
 module.exports.checkToken = async (ctx, next) => {
-  // console.log(ctx.request.body);
+   console.log("checkToken="+ctx.request.body);
   const token = ctx.cookies.get(config.tokenName);
   if (token) {
     try {
@@ -80,10 +81,11 @@ module.exports.setTokenCookie = (ctx, token) => {
     token, // value
     {
       maxAge: 10 * 24 * 60 * 60 * 1000, // cookie有效时
-      httpOnly: false,
+      httpOnly: true,
       overwirte: false,
-      domain: '.mangoya.cn'
+      domain: '/'
     }
   );
-  // console.log('ctx.cookies', ctx.cookies.get(config.tokenName));
+  console.log('tokenName='+config.tokenName);
+ //  console.log('ctx.cookies', ctx.cookies.get(config.tokenName));
 };

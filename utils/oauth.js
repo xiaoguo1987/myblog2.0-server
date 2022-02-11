@@ -8,19 +8,21 @@ const proxy = 'http://127.0.0.1:1087';
 module.exports.getAccessToken = (code) => new Promise(async (resolve) => {
   try {
     const url = `${githubOAth.url}?client_id=${githubOAth.client_id}&client_secret=${githubOAth.client_secret}&code=${code}`;
+    console.info("url==="+url);
     // 需要把参数通过url 设置 不知道为什么要这样，这样设置没有问题
     const res = await axios({
       url,
-      method: 'POST',
+      method: 'GET',
       // proxy: {
       //   host: '127.0.0.1',
-      //   port: 4780
+      //   port: 1081
       // },
       headers: {
         Accept: 'application/json'
       }
     });
     console.log('res--data', res.data);
+    console.info('res.data='+res.data);
     // const result = data;
     if (res && res.data) {
       resolve(res.data);

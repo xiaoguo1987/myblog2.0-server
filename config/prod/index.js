@@ -5,8 +5,8 @@ module.exports = {
   LIMIT: 16,
   githubOAth: {
     url: 'https://github.com/login/oauth/access_token',
-    client_id: '7a79cb87ff58020bc1ff',
-    client_secret: 'db7a2b1e41ffc6a65f487f40e583011393b59d1e',
+    client_id: '934da77f4bfa10880429',
+    client_secret: '3b847448acee5a9ca82371608498ec7ca28cb29b',
     redirect_uri: 'https://mangoya.cn',
     redirect_admin: 'https://mangoya.cn/admin2.0/',
     userUrl: 'https://api.github.com/user',

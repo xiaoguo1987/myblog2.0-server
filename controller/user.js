@@ -12,6 +12,7 @@ class authController {
   static async login(ctx) {
     const { code, state } = ctx.query;
     console.log('code----', code);
+    console.log('ctx----', ctx);
     const token = await getAccessToken(code);
     console.log('token', token);
 
@@ -50,13 +51,15 @@ class authController {
             label: getUserLabel()
           }).save();
         }
-        // console.log('res---', res);
+        console.log('cookie res---', res);
         if (res) {
           const jwtToken = createToken({
             _id: res._id,
             userId: res.userId
           });
+          console.log("jwtoken=",jwtToken);
           setTokenCookie(ctx, jwtToken);
+          console.info("state="+state);
           if (state === 'admin') {
             ctx.redirect(config.githubOAth.redirect_admin);
           } else if (state === 'blog') {
